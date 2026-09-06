@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>INTJ 完全剖析 · 建筑师 / Mastermind</title>
+<style>
+  :root{
+    --paper:#F8F6F0; --ink:#1E293B; --muted:#5B6472; --line:#D8D2C8;
+    --slate:#5B84B1; --slate-d:#2F4F6B; --gold:#C2A86B; --rose:#B5766B;
+    --soft:#EFEBE2; --mono:"SFMono-Regular",ui-monospace,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Helvetica Neue",-apple-system,"PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+    line-height:1.72;font-size:16px;}
+  .wrap{max-width:960px;margin:0 auto;padding:0 22px 90px;}
+  a{color:var(--slate-d);text-decoration:none;border-bottom:1px solid var(--line)}
+  /* hero */
+  .hero{border-bottom:1px solid var(--line);padding:54px 0 34px}
+  .kicker{font:600 12px/1 var(--mono);letter-spacing:.22em;color:var(--slate);text-transform:uppercase}
+  .hero h1{font-size:74px;line-height:.98;margin:.18em 0 .04em;letter-spacing:-.02em;font-weight:800}
+  .hero .sub{font-size:19px;color:var(--muted);max-width:620px}
+  .code{font:700 16px/1 var(--mono);color:var(--slate-d);letter-spacing:.32em;margin-top:14px}
+  /* invocation banner */
+  .invoke{margin:22px 0 0;border:1px solid var(--line);background:var(--soft);
+    padding:12px 16px;font-size:12.5px;color:var(--muted);line-height:1.6}
+  .invoke b{color:var(--ink);font-weight:600}
+  .invoke .tag{display:inline-block;font:600 11px/1 var(--mono);color:var(--slate-d);
+    border:1px solid var(--line);background:#fff;padding:3px 7px;margin:2px 4px 2px 0;border-radius:2px}
+  /* stat row */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);margin:30px 0 8px}
+  .stat{padding:16px 16px;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:0}
+  .stat .n{font:700 26px/1 var(--mono);color:var(--slate-d)}
+  .stat .l{font-size:12px;color:var(--muted);margin-top:6px}
+  /* sections */
+  section{padding:40px 0;border-bottom:1px solid var(--line)}
+  .idx{font:700 12px/1 var(--mono);letter-spacing:.2em;color:var(--slate)}
+  h2{font-size:27px;line-height:1.18;margin:.35em 0 .1em;letter-spacing:-.01em}
+  h3{font-size:18px;margin:1.6em 0 .4em;color:var(--slate-d)}
+  p{margin:.7em 0}
+  .by{font:600 11px/1 var(--mono);color:#fff;background:var(--slate);padding:3px 7px;
+    border-radius:2px;letter-spacing:.04em;vertical-align:middle;margin-right:6px}
+  .by.w{background:var(--gold)} .by.r{background:var(--rose)} .by.d{background:var(--slate-d)}
+  ul{margin:.6em 0;padding-left:1.1em} li{margin:.35em 0}
+  table{border-collapse:collapse;width:100%;margin:1em 0;font-size:14.5px}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:var(--soft);font-weight:600;color:var(--slate-d)}
+  td.mono{font-family:var(--mono);white-space:nowrap}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .card{border:1px solid var(--line);padding:16px 18px;background:#fff}
+  .card h4{margin:0 0 .3em;font-size:15px;color:var(--slate-d);letter-spacing:.01em}
+  .lead{font-size:16px;color:var(--ink)}
+  .note{border-left:3px solid var(--gold);padding:6px 0 6px 14px;color:var(--muted);font-size:14px;margin:1em 0}
+  .fig{margin:22px 0;border:1px solid var(--line);background:#fff;padding:18px}
+  .figcap{font:600 11px/1.3 var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:10px}
+  .legend{font-size:12px;color:var(--muted);margin-top:8px}
+  footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:12.5px}
+  @media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}
+    .stat:nth-child(2){border-right:0}.stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line)}
+    .grid2{grid-template-columns:1fr}.hero h1{font-size:54px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="kicker">MBTI · 16 型完全剖析 · 恋爱大师团队出品</div>
+    <h1>INTJ</h1>
+    <div class="sub">建筑师（Architect）· 谋略家（Mastermind）。内倾直觉主导的战略型人格，稀少、独立、以系统之眼重构未来。</div>
+    <div class="code">I · N · T · J</div>
+    <div class="invoke">
+      <b>本次网页由以下大师与技能联合产出：</b><br/>
+      <span class="tag">【镜】类型校准师</span><span class="tag">【枢】认知功能解构师</span><span class="tag">【锚】依恋×类型交叉师</span><span class="tag">【纹】关系摩擦测绘师</span><span class="tag">【谜】黄金配对解构师</span><span class="tag">【野】多元反刻板师</span><span class="tag">【言】情绪落地与话术师</span><span class="tag">【忆】长期记忆与档案师</span><span class="tag">【衡】红蓝对抗审判长</span><span class="tag">【界】伦理与安全守门人</span>
+      <br/><b>调用知识 / SKILL：</b> <code>knowledge/mbti/MBTI参透手册-2026.8.11.md</code> · <code>knowledge/mbti/三本宝书蒸馏.md</code> · <code>skills/恋爱军师技能总纲.md</code> · submodule <code>skills-library/技能库&准则</code>（agent-reach / Stop-slop / ui-ux-pro-max / taste-skill / impeccable）
+    </div>
+  </header>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat"><div class="n">2–4%</div><div class="l">人群占比（女性约 0.8–1.5%，最稀有之一）</div></div>
+    <div class="stat"><div class="n">NT</div><div class="l">Keirsey 气质：理性者（Rational）</div></div>
+    <div class="stat"><div class="n">Ni-Te-Fi-Se</div><div class="l">认知功能栈（Jung 八功能模型）</div></div>
+    <div class="stat"><div class="n">#2 / #1</div><div class="l">别名：建筑师 / 谋略家（Mastermind）</div></div>
+  </div>
+
+  <!-- 01 四维字母 -->
+  <section>
+    <div class="idx">01 / 四维字母</div>
+    <h2>四个字母到底在说什么</h2>
+    <p class="lead">INTJ 不是四个孤立标签，而是四道先天偏好叠加出的稳定模式。每一道都来自 Myers 的《Gifts Differing》二分框架。</p>
+    <table>
+      <tr><th class="mono">I</th><td><b>内倾（Introversion）</b>：心理能量流向内在观念与自我。独处回血，思考先于表达。INTJ 的主导功能 Ni 本就内倾，因此"看起来安静"是结构性的，不是冷漠。</td></tr>
+      <tr><th class="mono">N</th><td><b>直觉（iNtuition）</b>：感知走"可能性与意义"而非当下事实。INTJ 用 Ni 把零散信息收敛成单一长远图景，常"未证先知"。</td></tr>
+      <tr><th class="mono">T</th><td><b>思考（Thinking）</b>：判断以逻辑与客观证据为先。INTJ 的辅助 Te 把内在洞见外化为系统、计划与标准。</td></tr>
+      <tr><th class="mono">J</th><td><b>判断（Judging）</b>：对外偏好闭合与结构。INTJ 以"布局完成"为舒适区，厌恶悬而未决。</td></tr>
+    </table>
+    <div class="note">【镜】类型校准师提醒：四字母是"倾向"不是"判决书"。网上快测重测 39–76% 变型，给 INTJ 下结论前先看行为证据（长期战略行为、对低效的零容忍、对独处的需要）。</div>
+  </section>
+
+  <!-- 02 功能栈 -->
+  <section>
+    <div class="idx">02 / 认知功能栈</div>
+    <h2><span class="by">【枢】</span>功能栈 Ni → Te → Fi → Se：机制层真相</h2>
+    <p>四字母只是门牌，<b>八功能栈才是户型</b>。INTJ 的整套机制是 Jung《心理类型》(1921) 模型的直译：主导内倾直觉、辅助外倾思考、第三内倾情感、劣势外倾感觉。</p>
+
+    <div class="fig">
+      <div class="figcap">图 01 · INTJ 功能栈（颜色越深 = 越主导）</div>
+      <svg viewBox="0 0 720 300" width="100%" role="img" aria-label="INTJ 功能栈">
+        <defs>
+          <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#2F4F6B"/><stop offset="1" stop-color="#3F628A"/></linearGradient>
+        </defs>
+        <g font-family="ui-monospace,Menlo,monospace" font-size="13">
+          <rect x="20" y="14" width="680" height="58" rx="4" fill="url(#g1)"/>
+          <text x="40" y="40" fill="#fff" font-size="20" font-weight="700">Ni</text>
+          <text x="110" y="40" fill="#EAF1F8" font-size="15">主导 Dominant · 内倾直觉</text>
+          <text x="560" y="40" fill="#EAF1F8" font-size="12">收敛图景 / 长远洞察</text>
+
+          <rect x="20" y="84" width="680" height="58" rx="4" fill="#5B84B1"/>
+          <text x="40" y="110" fill="#fff" font-size="20" font-weight="700">Te</text>
+          <text x="110" y="110" fill="#F1F6FA" font-size="15">辅助 Auxiliary · 外倾思考</text>
+          <text x="560" y="110" fill="#F1F6FA" font-size="12">系统 / 执行 / 标准</text>
+
+          <rect x="20" y="154" width="680" height="58" rx="4" fill="#9FB6CE"/>
+          <text x="40" y="180" fill="#1E293B" font-size="20" font-weight="700">Fi</text>
+          <text x="110" y="180" fill="#1E293B" font-size="15">第三 Tertiary · 内倾情感</text>
+          <text x="560" y="180" fill="#1E293B" font-size="12">私人价值 / 道德罗盘</text>
+
+          <rect x="20" y="224" width="680" height="58" rx="4" fill="#D8D2C8"/>
+          <text x="40" y="250" fill="#1E293B" font-size="20" font-weight="700">Se</text>
+          <text x="110" y="250" fill="#1E293B" font-size="15">劣势 Inferior · 外倾感觉</text>
+          <text x="560" y="250" fill="#1E293B" font-size="12">当下感官 / 盲区</text>
+        </g>
+      </svg>
+      <div class="legend">主导与辅助方向相反、一感知一判断，构成 INTJ 的"工作对"（Ni 收敛愿景，Te 落地执行）。</div>
+    </div>
+
+    <div class="grid2">
+      <div class="card"><h4>Ni · 主导：收敛式远见</h4><p>把信息压成单一连贯图景，"知道但说不清为什么"。强在战略预判，弱在难向他人转译。</p></div>
+      <div class="card"><h4>Te · 辅助：外部秩序</h4><p>用逻辑、系统、标准改造外部世界。INTJ 的"直接、高效、零废话"来自这里，也常因此显得冷。</p></div>
+      <div class="card"><h4>Fi · 第三：私人价值</h4><p>缓慢成熟（约中年起），形成深层道德罗盘。INTJ 看似无情，实则价值感极强，只是内倾不外露。</p></div>
+      <div class="card"><h4>Se · 劣势：感官盲区</h4><p>对当下感官、即兴与肢体最弱。高强度环境或突发变化会直接打它的软肋。</p></div>
+    </div>
+  </section>
+
+  <!-- 03 阴影 + Beebe -->
+  <section>
+    <div class="idx">03 / 阴影与八维（Beebe 模型）</div>
+    <h2><span class="by d">【枢】</span>主栈之外：四道阴影功能</h2>
+    <p>John Beebe 把八功能分成"意识四层 + 阴影四层"。INTJ 的阴影是主栈的<b>反向取向</b>：Ne · Ti · Fe · Si，平时在潜意识，压力下以陌生方式爆发。</p>
+    <div class="fig">
+      <div class="figcap">图 02 · Beebe 八维角色（意识 4 + 阴影 4）</div>
+      <svg viewBox="0 0 720 250" width="100%" role="img" aria-label="Beebe 八维">
+        <g font-family="ui-monospace,Menlo,monospace" font-size="12.5">
+          <rect x="20" y="18" width="335" height="210" rx="4" fill="#EFEBE2" stroke="#D8D2C8"/>
+          <text x="36" y="40" fill="#2F4F6B" font-weight="700" font-size="13">意识层 CONSCIOUS</text>
+          <text x="36" y="72" fill="#1E293B">Hero 英雄 — Ni（主导）</text>
+          <text x="36" y="102" fill="#1E293B">Parent 父母 — Te（辅助）</text>
+          <text x="36" y="132" fill="#1E293B">Child 孩童 — Fi（第三）</text>
+          <text x="36" y="162" fill="#1E293B">Inferior 劣势 — Se（最弱）</text>
+          <text x="36" y="200" fill="#5B6472" font-size="11">日常可触及，决定"你是谁"</text>
+
+          <rect x="375" y="18" width="325" height="210" rx="4" fill="#F4ECE0" stroke="#D8D2C8"/>
+          <text x="391" y="40" fill="#B5766B" font-weight="700" font-size="13">阴影层 SHADOW</text>
+          <text x="391" y="72" fill="#1E293B">Opposing 对立 — Ne</text>
+          <text x="391" y="102" fill="#1E293B">Critical Parent 严父 — Ti</text>
+          <text x="391" y="132" fill="#1E293B">Trickster 诡匠 — Fe</text>
+          <text x="391" y="162" fill="#1E293B">Demon 恶魔 — Si</text>
+          <text x="391" y="200" fill="#5B6472" font-size="11">压力下失控式爆发，最陌生</text>
+        </g>
+      </svg>
+      <div class="legend">Fe 是 INTJ 的 Trickster（诡匠）：最不懂"读场、顺情绪"，一旦被逼社交表演会格外别扭；Si 是 Demon：最抗拒"守旧规、念旧"。</div>
+    </div>
+  </section>
+
+  <!-- 04 环路 + 抓握 -->
+  <section>
+    <div class="idx">04 / 环路与抓握</div>
+    <h2><span class="by">【枢】</span>当 INTJ "不像自己"：Ni-Fi 环路 与 Se 抓握</h2>
+    <div class="grid2">
+      <div class="card"><h4>Ni-Fi 环路（Dom–Tert 卡死）</h4><p>绕开 Te，长期缩在"我的洞见 + 我的价值"里：对外部世界失去行动欲，变得固执、疏离、自我印证。恢复靠<b>重新启动 Te</b>——做一件有外部结果的小事。</p></div>
+      <div class="card"><h4>Se 抓握（劣势接管）</h4><p>主导 Ni 崩溃时，最弱的 Se 反扑：暴食、冲动消费、对身材/细节的强迫、易怒、丧失长远视角。恢复靠<b>温和感官安抚</b>（运动、手工、自然），不纵容也不过压。</p></div>
+    </div>
+    <div class="note">【言】话术师注：对象"突然反常"先查 Grip/Loop，不要立刻归因"他不爱我了"。一句可发送的话："你最近是不是压力很大、有点不在状态？我们先不做决定，休息一下。"</div>
+  </section>
+
+  <!-- 05 三本宝书 -->
+  <section>
+    <div class="idx">05 / 三本宝书蒸馏</div>
+    <h2><span class="by w">【忆】</span>Jung · Myers · Keirsey 各自如何解释 INTJ</h2>
+    <table>
+      <tr><th>著作</th><th>给 INTJ 的定位</th><th>解释"机制/弱点"的方式</th></tr>
+      <tr><td class="mono">Jung<br/>心理类型 1921</td><td>Ni-Te-Fi-Se 八功能模型；劣势 Se 由"同轴对立"原则直接推出</td><td>态度×功能的先天结构（机制层，最深）</td></tr>
+      <tr><td class="mono">Myers<br/>Gifts Differing 1980</td><td>NT 型"逻辑且 ingenious"；原话"独立、有远见、求系统改进"</td><td>主导/辅助过程 + 天生类型；阴影面 + 逆本性致压力</td></tr>
+      <tr><td class="mono">Keirsey<br/>Please Understand Me II 1998</td><td>NT 理性者 · <b>Mastermind 谋略家</b>（Arranging）</td><td>气质（抽象×功利）+ 角色变体；谈大类趋势，非功能模型</td></tr>
+    </table>
+    <div class="note">【界】伦理守门人裁定：三书互补——Jung 讲机制、Myers 讲正统应用、Keirsey 讲大类气质。用气质聊"趋势"可以，聊"为什么"仍须回功能栈；不可把 Keirsey 气质当 MBTI 功能模型混用。</div>
+  </section>
+
+  <!-- 06 稀有度 + 代表 -->
+  <section>
+    <div class="idx">06 / 稀有度与代表人物</div>
+    <h2>为什么说 INTJ "稀有且常被误读"</h2>
+    <ul>
+      <li><b>占比约 2–4%</b>，与 INFJ 并列最稀有；<b>女性 INTJ 约 0.8–1.5%</b>，常被说"不像典型女孩"，童年即感格格不入。</li>
+      <li><b>代表人物（公开分析，非官方认证）</b>：Elon Musk、Isaac Newton、Mark Zuckerberg、Michelle Obama、Nikola Tesla、Christopher Nolan、Friedrich Nietzsche、Stephen Hawking、Hillary Clinton、Jay-Z。共性是"长程愿景 + 系统执行 + 对低效零容忍 + 私下原则极强"。</li>
+      <li><b>INTJ 凝视（INTJ stare）</b>：聚焦思考时眼神放空/穿透，常被误读为冷漠或敌意，实际是"人在场、神在 Ni"。</li>
+    </ul>
+  </section>
+
+  <!-- 07 优势 -->
+  <section>
+    <div class="idx">07 / 优势</div>
+    <h2><span class="by">【镜】</span>INTJ 真正强在哪里</h2>
+    <div class="grid2">
+      <div class="card"><h4>智力纵深</h4><p>对真感兴趣的事钻得很深，要 mastery 不要表面，自带领域专长。</p></div>
+      <div class="card"><h4>诚实直接</h4><p>Te 驱动的表达不裹糖衣，言即所想；可刺耳，但可信。</p></div>
+      <div class="card"><h4>长期承诺</h4><p>一旦认定目标/关系/人，投入极深；忠诚比 Reserved 的外表更厚。</p></div>
+      <div class="card"><h4>系统重构</h4><p>看到低效结构就忍不住优化，是天生的架构师与改革者。</p></div>
+    </div>
+  </section>
+
+  <!-- 08 盲区 -->
+  <section>
+    <div class="idx">08 / 盲区与弱点</div>
+    <h2><span class="by r">【衡】</span>INTJ 的五道软肋（红蓝对抗后留存项）</h2>
+    <table>
+      <tr><th>弱点</th><th>机制来源</th><th>表现</th></tr>
+      <tr><td>被感知的傲慢</td><td>Ni 常"未证先对"</td><td>在他人证据到位前就下结论，像在轻视对方视角</td></tr>
+      <tr><td>情感不可得</td><td>Te 接口而非 Fe</td><td>实时情绪表达陌生，伴侣易感"被关在门外"</td></tr>
+      <tr><td>完美主义拖进度</td><td>Ni-Te 追最优</td><td>反复打磨不发布，错过窗口</td></tr>
+      <tr><td>即兴无能</td><td>劣势 Se</td><td>突发变更/强社交需求直接打软肋，显烦躁</td></tr>
+      <tr><td>过度独立 / 断联式切割</td><td>Ni + 低 Se 社交能耗</td><td>低估协作；认定某人"不值得"后外科手术式消失（类 INFJ 门 slam，但更静默）</td></tr>
+    </table>
+    <div class="note">【界】守门人：以上为"类型倾向"非"人格定罪"。用行为证据校正，不拿字母贴人；INTJ 本身不是缺陷，是待整合的配置。</div>
+  </section>
+
+  <!-- 09 恋爱匹配 -->
+  <section>
+    <div class="idx">09 / 恋爱与匹配</div>
+    <h2><span class="by">【锚】</span><span class="by w">【纹】</span><span class="by">【谜】</span>匹配：类型当透镜，依恋定生死</h2>
+    <p><b>INTJ 在关系里的硬需求</b>：智力深度（能挑战其思维）、自主权与空间（黏人=耗能）、直接不猜（读不懂暗示且讨厌猜）、可靠（说到做到）、成长导向（停滞是关系杀手）。爱以"能力行动 + 解决问题 + 长期可靠"表达，而非甜言。</p>
+
+    <h3>黄金配对（类型文学，非科学保证）</h3>
+    <div class="grid2">
+      <div class="card"><h4>ENTP（Ne-Ti-Fe-Si）· 化学 99%</h4><p>外倾直觉补足 INTJ 的收敛，Ti 接得住深度，社交重量由 ENTP 扛。镜像互补的" Alter Ego "。</p></div>
+      <div class="card"><h4>ENFP（Ne-Fi-Te-Si）· 化学 93%</h4><p>温暖引出 INTJ 的 Fi，共享直觉语言（Ne-Ni），Te 能共执行远景。</p></div>
+    </div>
+
+    <h3>全 16 型化学排名（personality-database 口径，趋势参考）</h3>
+    <table>
+      <tr><th>档次</th><th>类型与化学值</th></tr>
+      <tr><td>极佳 99–98</td><td class="mono">ENTP 99 · INTP 98</td></tr>
+      <tr><td>强 94–92</td><td class="mono">ESFJ 94 · ISFJ 93 · ENFP 93 · INFP 92</td></tr>
+      <tr><td>尚可 88–85</td><td class="mono">ESTJ 88 · ISTJ 88 · ESTP 87 · ISTP 86 · ENFJ 85 · INFJ 85</td></tr>
+      <tr><td>需努力 84–83</td><td class="mono">ESFP 84 · ISFP 84 · ENTJ 83 · INTJ 83</td></tr>
+    </table>
+
+    <h3>INTJ × INTJ：镜像双 architect</h3>
+    <p>同栈带来罕见的理解深度（70/100，good match），但<b>共享盲区</b>也翻倍：双方都不自然补情感表达与即兴，易成回声室、隐性竞争。成功靠"分域授权 + 定期情感 check-in + 引入外部视角"。</p>
+
+    <div class="note">【谜】黄金配对解构师 + 【锚】依恋交叉师联合裁定：MBTI 配对对关系<b>长久的预测力可忽略</b>（426 对夫妻 7 年纵向研究：仅比随机略好）。INTJ 真能走远，看的是<b>依恋安全、沟通质量、共享价值、情绪稳定</b>，不是字母。类型只帮"理解差异"，不当"该不该在一起"的判决。</div>
+
+    <h3>INTJ 关系数据（多来源调查，作趋势看）</h3>
+    <ul>
+      <li>42% 的 INTJ 恋情维持 5 年以上（一般人群 31%）。</li>
+      <li>76% 重视"深度对话"胜过"随意亲昵"；68% 把"情感契合"排在"生理吸引"之前。</li>
+      <li>84% 在信任破裂时"无法妥协忠诚"；1.9× 更可能因信任破裂而结束关系。</li>
+      <li>61% 不主动开启对话除非先有化学反应；73% 等对方先追。</li>
+      <li>81% 直接表达边界；1.7× 更常在关系里设清晰边界。</li>
+    </ul>
+  </section>
+
+  <!-- 10 职业 -->
+  <section>
+    <div class="idx">10 / 职业</div>
+    <h2><span class="by">【镜】</span>Ni-Te 栈在哪发光、在哪熄火</h2>
+    <div class="grid2">
+      <div class="card"><h4>最佳适配</h4><p>独立思辨、长程规划、可量化结果：软件架构、科研、创业、咨询、法律、战略/高管、投资。关键词=自主权 + 智力挑战 + 清晰成功标准。</p></div>
+      <div class="card"><h4>最差适配</h4><p>前线客服/呼叫中心、强关系维护型销售、被动应变的活动统筹、需持续情绪迎合的 PR/社媒、重政治靠共识而非分析的环境。</p></div>
+    </div>
+  </section>
+
+  <!-- 11 INTJ vs INFJ -->
+  <section>
+    <div class="idx">11 / INTJ vs INFJ</div>
+    <h2><span class="by d">【枢】</span>最常被搞混的一对：同 Ni 不同"判"</h2>
+    <p>两者共享主导 <b>Ni</b> 与劣势 <b>Se</b>，所以表面都"安静、有远见、被说有通灵感"。分水岭在<b>辅助功能</b>：INTJ 用 Te（系统），INFJ 用 Fe（人情）。</p>
+    <table>
+      <tr><th>维度</th><th>INTJ</th><th>INFJ</th></tr>
+      <tr><td class="mono">栈</td><td class="mono">Ni-Te-Fi-Se</td><td class="mono">Ni-Fe-Ti-Se</td></tr>
+      <tr><td>决策基准</td><td>逻辑、效率、证据</td><td>价值、共情、对人的影响</td></tr>
+      <tr><td>沟通</td><td>直截、精确、少寒暄</td><td>隐喻、善用外交、调氛围</td></tr>
+      <tr><td>冲突风格</td><td>分析、去情绪</td><td>护和谐、避冲突</td></tr>
+      <tr><td>压力撤退</td><td>独自解题</td><td>独自处理情绪</td></tr>
+      <tr><td>第三功能</td><td>Fi（私人价值）</td><td>Ti（私人逻辑）</td></tr>
+    </table>
+    <div class="note">最快区分：高压下做艰难决定时，INTJ 先问"这讲得通吗"，INFJ 先问"谁会受伤"。一句话辨型，比测 100 道题更准。</div>
+  </section>
+
+  <!-- 12 A/T + Big Five -->
+  <section>
+    <div class="idx">12 / 16Personalities 的 A/T 与 Big Five</div>
+    <h2><span class="by w">【野】</span>当 INTJ 遇上 NERIS 模型（后缀 -A / -T）</h2>
+    <p>16Personalities 在 MBTI 四维度外加 <b>Assertive(A)/Turbulent(T)</b>，并用 Big Five 增强信效度。INTJ 常见两种亚型：</p>
+    <ul>
+      <li><b>INTJ-A（果断型）</b>：更情绪封闭、自信、不易被质疑动摇，但也更不易暴露脆弱。</li>
+      <li><b>INTJ-T（动荡型）</b>：焦虑与自我怀疑更高，更驱动完美主义，成长痛更明显。</li>
+    </ul>
+    <p>典型 INTJ 在 Big Five 上的近似剖面（样本均值，非标准）：</p>
+    <div class="fig">
+      <div class="figcap">图 03 · INTJ 的 Big Five 近似剖面（0–100）</div>
+      <svg viewBox="0 0 720 230" width="100%" role="img" aria-label="Big Five 剖面">
+        <g font-family="ui-monospace,Menlo,monospace" font-size="13" fill="#1E293B">
+          <text x="10" y="34">外倾 E</text><rect x="120" y="20" width="500" height="18" fill="#EFEBE2"/><rect x="120" y="20" width="60" height="18" fill="#5B84B1"/><text x="630" y="34" fill="#5B84B1">12</text>
+          <text x="10" y="74">宜人 A</text><rect x="120" y="60" width="500" height="18" fill="#EFEBE2"/><rect x="120" y="60" width="275" height="18" fill="#5B84B1"/><text x="630" y="74" fill="#5B84B1">55</text>
+          <text x="10" y="114">神经质 N</text><rect x="120" y="100" width="500" height="18" fill="#EFEBE2"/><rect x="120" y="100" width="225" height="18" fill="#5B84B1"/><text x="630" y="114" fill="#5B84B1">45</text>
+          <text x="10" y="154">尽责 C</text><rect x="120" y="140" width="500" height="18" fill="#EFEBE2"/><rect x="120" y="140" width="365" height="18" fill="#5B84B1"/><text x="630" y="154" fill="#5B84B1">73</text>
+          <text x="10" y="194">开放 O</text><rect x="120" y="180" width="500" height="18" fill="#EFEBE2"/><rect x="120" y="180" width="375" height="18" fill="#5B84B1"/><text x="630" y="194" fill="#5B84B1">75</text>
+        </g>
+      </svg>
+      <div class="legend">低 E（独处回血）、中 A（重逻辑轻讨好）、中低 N（情绪稳但非无感）、高 C（自律）、高 O（智识好奇）。SLOAN 近似 RCOAI。</div>
+    </div>
+    <div class="note">【野】反刻板师：A/T、Big Five 都是"连续谱上的位置"，不是新标签。别用"INTJ-T 就是焦虑"去框人；同一四字母内部差异可能大于型间差异。</div>
+  </section>
+
+  <!-- 13 成长路线 -->
+  <section>
+    <div class="idx">13 / 一生发展路线</div>
+    <h2><span class="by">【忆】</span>功能如何随时间出场（整合而非替换）</h2>
+    <table>
+      <tr><th>阶段</th><th>重点功能</th><th>典型挑战</th></tr>
+      <tr><td>童年 0–12</td><td>Ni 主导确立</td><td>显内部化、易走神、与同伴疏离</td></tr>
+      <tr><td>青年 13–22</td><td>Te 辅助发展</td><td>显 blunt、对低效不耐、好辩</td></tr>
+      <tr><td>成年 23–35</td><td>Ni+Te 精熟</td><td>高成就但情感抽离，关系易损</td></tr>
+      <tr><td>中年 36–55</td><td>Fi 第三浮现</td><td>价值感加深、更真实表达情感</td></tr>
+      <tr><td>晚年 55+</td><td>Se 劣势整合</td><td>开始享受身体、手艺、自然；刚性下降</td></tr>
+    </table>
+    <div class="note">Jung 称为"个体化（individuation）"：晚年整合劣势 Se，不是变成 SP，而是让感知补全判断，减少认知刚性。</div>
+  </section>
+
+  <!-- 14 实操建议 -->
+  <section>
+    <div class="idx">14 / 给双方的可执行建议</div>
+    <h2><span class="by">【言】</span>把洞察翻成能做的事</h2>
+    <div class="grid2">
+      <div class="card"><h4>给伴侣 / 追求者</h4>
+        <ul>
+          <li>直接说需求，别让 INTJ 猜；暗示会被当成未定义问题被"分析"而非"接住"。</li>
+          <li>尊重独处=回血，不是冷落；给空间后他会更主动回来。</li>
+          <li>用"深度对话 + 一起解决真问题"建立连接，胜过密集甜言。</li>
+          <li>触怒点：低效、言而无信、被迫即兴社交、被当众否定。</li>
+        </ul>
+      </div>
+      <div class="card"><h4>给 INTJ 自己</h4>
+        <ul>
+          <li>设"够好"标准再开工，到线就发布，破完美主义。</li>
+          <li>每日给 Se 一点时间（运动/手工/自然），防 Grip 反扑。</li>
+          <li>练"先接情绪再给方案"：伴侣要的是被懂，不是被修。</li>
+          <li>关系里主动做情感 check-in，别等对方先追。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 类型网格 -->
+  <section>
+    <div class="idx">15 / 16 型网格定位</div>
+    <h2>INTJ 在类型矩阵里的位置</h2>
+    <div class="fig">
+      <div class="figcap">图 04 · 16 型网格（NT 理性者列高亮，INTJ 实框）</div>
+      <svg viewBox="0 0 720 260" width="100%" role="img" aria-label="16型网格">
+        <g font-family="ui-monospace,Menlo,monospace" font-size="12" text-anchor="middle">
+          <!-- columns: NT NF SJ SP simplified as 4 groups x4 -->
+          <rect x="20" y="30" width="160" height="40" fill="#EFEBE2"/><text x="100" y="55" fill="#2F4F6B">NT · 理性</text>
+          <rect x="200" y="30" width="160" height="40" fill="#EFEBE2"/><text x="280" y="55" fill="#2F4F6B">NF · 理想</text>
+          <rect x="380" y="30" width="160" height="40" fill="#EFEBE2"/><text x="460" y="55" fill="#2F4F6B">SJ · 守护</text>
+          <rect x="560" y="30" width="160" height="40" fill="#EFEBE2"/><text x="640" y="55" fill="#2F4F6B">SP · 艺术</text>
+          <!-- NT col: INTJ ENTP INTP ENTJ -->
+          <rect x="20" y="80" width="160" height="40" fill="#5B84B1"/><text x="100" y="105" fill="#fff" font-weight="700">INTJ</text>
+          <rect x="20" y="130" width="160" height="40" fill="#DFE7EF"/><text x="100" y="155" fill="#1E293B">ENTP</text>
+          <rect x="20" y="180" width="160" height="40" fill="#DFE7EF"/><text x="100" y="205" fill="#1E293B">INTP</text>
+          <rect x="20" y="230" width="160" height="40" fill="#DFE7EF"/><text x="100" y="255" fill="#1E293B">ENTJ</text>
+          <!-- sample others -->
+          <rect x="200" y="80" width="160" height="40" fill="#EFEBE2"/><text x="280" y="105" fill="#1E293B">INFJ</text>
+          <rect x="200" y="130" width="160" height="40" fill="#EFEBE2"/><text x="280" y="155" fill="#1E293B">ENFP</text>
+          <rect x="380" y="80" width="160" height="40" fill="#EFEBE2"/><text x="460" y="105" fill="#1E293B">ISTJ</text>
+          <rect x="380" y="130" width="160" height="40" fill="#EFEBE2"/><text x="460" y="155" fill="#1E293B">ESFJ</text>
+          <rect x="560" y="80" width="160" height="40" fill="#EFEBE2"/><text x="640" y="105" fill="#1E293B">ISTP</text>
+          <rect x="560" y="130" width="160" height="40" fill="#EFEBE2"/><text x="640" y="155" fill="#1E293B">ESFP</text>
+          <text x="100" y="292" fill="#5B6472" font-size="10">INTJ 居 NT 列首位（内倾直觉主导 + 思考辅助），与 ENTP/INTP/ENTJ 同气质，互称"理性者"。</text>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <!-- 16 低中高阶 -->
+  <section>
+    <div class="idx">16 / 低中高阶 INTJ</div>
+    <h2><span class="by d">【衡】</span>网络高频维度：低阶 / 中阶 / 高阶（发展态，非官方 MBTI）</h2>
+    <p class="lead">中文 MBTI 圈高频讨论的"低中高阶"，按<b>功能发展程度 + 与社会互动的成熟度</b>给 INTJ 分阶，不属于官方 MBTI，但极能解释"为什么同是 INTJ 表现天差地别"。核心判断标准常被概括为一句话：<b>与社会的交互方式</b>。</p>
+    <table>
+      <tr><th>维度</th><th>低阶 Low</th><th>中阶 Mid</th><th>高阶 High</th></tr>
+      <tr><td>对外姿态</td><td>把类型当借口阻碍进化；高防备、高攻击、腹黑；狂妄自大，不屑认识社会规律</td><td>开始自我怀疑并尝试改变；用 MBTI 作自我改善参照；探索"如何与社会交互"；更谦卑、会模拟他人</td><td>回归自信，但建立在成熟世界观上；无视刻板描述、不机械搬运；圆融入世、有温度</td></tr>
+      <tr><td>功能状态</td><td>Ni-Fi 环路、Te 误用/弱、Se 失控；易陷内耗</td><td>Te 启动、Fi 稳定发展；反复怀疑与重建</td><td>Ni-Fi-Te-Se 较均衡；Se 被整合，落地且不死板</td></tr>
+      <tr><td>心境隐喻</td><td><b>内耗期</b>：戾气、刺猬态、生人勿近</td><td><b>探寻期</b>：和解、收敛锋利、接纳实相</td><td><b>精进期</b>：顺应、过滤噪声、大隐隐于市</td></tr>
+      <tr><td>常见误读</td><td>被当成"INTJ 本来的样子"（其实是未发展态）</td><td>被当成"内耗的 INTJ"（其实是成长中）</td><td>被神化成"完美形态"（其实持续发展中，无终点）</td></tr>
+    </table>
+
+    <h3>与 A/T、九型、八维的联动</h3>
+    <ul>
+      <li><b>INTJ-T vs INTJ-A</b>：T 是常规发展阶段（多内耗、易 loop），A 是发展完善态（脱离标准内倾、对外更像镜像人格 ENTP）。多数 INTJ 从 T 螺旋式升到 A，也可能回落，均属正常发展阶段。</li>
+      <li><b>九型人格</b>：同一四字母因九型（如 5w4、1w9、145）外在表现差异巨大；副型 sp/sx/so 也改优先级。看 INTJ 不能只看 MBTI。</li>
+      <li><b>八维发展</b>：低中高阶本质是八维整合度。测八维比单测四字母更稳，能避免"高压态短暂 INTJ"（如 INFP 过度高压可短时显 INTJ）的误判。</li>
+    </ul>
+    <div class="note">【界】伦理守门人 + 【衡】审判长裁定：阶位是<b>发展状态</b>不是人格优劣，"高阶"不是优越感筹码；用低/中/高阶贴人、贴自己都越界。成长路径很朴素——低阶像 ENTP 一样生活以激活阴面四维、走出 loop；中阶用 MBTI 当自查清单；高阶靠整合 Se（运动/手艺/自然）把愿景落进现实。</div>
+    <div class="note">【言】可发送的一句话："INTJ 没有'毕业态'，低中高阶只是你此刻站在哪一步；别拿阶位当尺子量自己或别人。"</div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><b>来源与方法</b>：本页由"恋爱大师 10 人团队"依技能总纲联合产出；知识来自《Gifts Differing》(Myers & Myers, 1980)、《Psychological Types》(Jung, 1921)、《Please Understand Me II》(Keirsey, 1998) 的公开书摘，以及 2025–2026 年 MBTI / INTJ 实证研究综述（认知功能栈、阴影、Grip/Loop、Beebe 模型、16Personalities NERIS、Big Five 相关、426 对夫妻纵向研究等）。详见 <code>knowledge/mbti/MBTI参透手册-2026.8.11.md</code> 与 <code>knowledge/mbti/三本宝书蒸馏.md</code>。</p>
+    <p><b>边界声明</b>：MBTI 是自我觉察与沟通框架，非心理测量金标准，重测信度有限、对关系长久预测力可忽略。本页所有"匹配/数据"均作趋势参考，不作诊断、招聘或"该不该在一起"的判决。伦理守门人【界】保留最终否决。</p>
+  </footer>
+
+</div>
+</body>
+</html>

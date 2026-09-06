@@ -24,6 +24,14 @@
 > [shengjidaguai-china/goutoujunshi](https://github.com/shengjidaguai-china/goutoujunshi)，MIT），
 > 在此基础上把 MBTI 从子功能提升为主干，并建立了本人语料库。
 > 完整体检与改造记录见 [`documentation/仓库体检报告.md`](documentation/仓库体检报告.md)。
+>
+> 📌 **前身仓（2026-09-06 补记）**：同一条思路更早的一次迭代在 `sunccchengze/wendang11`
+> （「恋爱大师 LoveMaster · 恋爱军师 2.0 · MBTI 精通型」，2026-08-04 建、2026-08-12 停更），
+> 它同样以 `goutoujunshi` 为底座，并挂了 turbine 项目的技能库 submodule。
+> 该仓 22 份独有内容（人格判定书、MBTI 参透手册、三本宝书蒸馏、16 份交往注意事项、
+> 10 人专家团队、技能总纲、6 份原始规约、INTJ 图文页）已于 2026-09-06 迁入本仓，原仓由主人删除。
+> 关联逐条给证据、迁入清单与没迁的原因见
+> [`documentation/wendang11迁入与归档核对-2026-09-06.md`](documentation/wendang11迁入与归档核对-2026-09-06.md)。
 
 ## 人格探索：它能帮你解决什么
 
@@ -186,16 +194,23 @@ MBTI 分析需要三样东西：**方法论**（怎么问、怎么记账、怎�
 ```text
 scz_MBTI_explorer/
 ├── SKILL.md                    # 核心行为与工作流（MBTI 主干 + 关系应用）
+├── AGENTS.md                   # 任何 Agent 进仓先读：沟通／证据／Git／语料库纪律
 ├── agents/openai.yaml         # Codex 展示与默认提示词
+├── assets/web/intj.html       # 431 行自包含 INTJ 图文页（零外链）
 ├── corpus/                    # 孙承泽本人语料库（MBTI 探索者的主语）
 │   ├── profile/               # 人物档案、MBTI证据账本、表达DNA、待补充问题队列
 │   ├── memory/MEMORY.md       # 活记忆：每轮对话追加，只增不改
-│   └── sources/SOURCES.md     # 来源台账：每条证据可溯源
+│   ├── handoff/               # 跨仓交接（S1 turbine bench）
+│   └── sources/               # 来源台账 SOURCES.md + A1 人格判定书
 ├── reference-repos/           # 外部 MBTI／人格参考仓库（只读，见 REFERENCE-INDEX.md）
 ├── references/
-│   ├── knowledge/             # 人格、关系科学与跨学科知识文档
+│   ├── knowledge/             # 人格、关系科学与跨学科知识文档（含 21 参透手册、22 三本宝书蒸馏）
 │   └── practical/             # MBTI 访谈与训练、沟通、工具适配与记忆规则
+│       └── 交往注意事项/       # 「我（INTJ）与 X 型交往」16 份 + 导读
 ├── documentation/             # 架构、流程、体检报告与安全边界
+│   ├── methods/               # 方法论层：10 人团队、技能总纲、原始规约（含 NOTICE 版权）
+│   ├── 数字核验台账-…md        # 迁入内容里每个数字的 A–E 来源分级
+│   └── wendang11迁入与归档核对-…md
 └── scripts/
     ├── validate_skill.py      # 项目完整性检查
     ├── memory_store.py        # 同意门禁、限量记忆、撤销与删除
@@ -219,6 +234,7 @@ scz_MBTI_explorer/
 
 | 日期 | 类型 | 更新 | 用户价值 |
 | --- | --- | --- | --- |
+| 2026-09-06 | 迁入与核验 | 把已停更的 `wendang11`（LoveMaster · 恋爱军师 2.0 · MBTI 精通型，2026-08-12 停更）的 22 份独有内容迁入本仓：A1 人格判定书、MBTI 参透手册、三本宝书蒸馏、16 份交往注意事项、恋爱大师 10 人团队、恋爱军师技能总纲、6 份 turbine 原始规约、431 行 INTJ 图文页。新增 [`documentation/数字核验台账-wendang11迁入-2026-09-06.md`](documentation/数字核验台账-wendang11迁入-2026-09-06.md) 给每个数字定 A–E 来源等级；根许可证由 PolyForm Noncommercial 改为 MIT，与上游对齐。 | 修好 A1 证据源的死引用；主人可安全删除 wendang11（`SCZ_Archived` 另有 152 文件／25.05 MB 完整快照）；数字全部保留，但不再冒充测量值。核验中抓到手册一处硬错（Big Five 相关系数强弱写反）与 Probability Index 定义偏离官方口径。 |
 | 2026-09-03 | 正名 | Skill 由「狗头军师 goutoujunshi」正式更名为「MBTI 探索者 scz-mbti-explorer」；`SKILL.md` 重构为 MBTI 主干 + 关系应用双入口；`agents/openai.yaml`、验证器与本地记忆存储目录同步改名（旧档案自动迁移）。 | 仓库名、Skill 名与内容终于对齐；关系能力保留但降级为应用场景，不再喧宾夺主。 |
 | 2026-09-03 | 语料库 | 新增 `corpus/`（人物档案、MBTI证据账本、表达DNA、待补充问题队列、活记忆、来源台账）；收录 7 个外部参考仓库；验证器跳过 `reference-repos/`；新增仓库体检报告与推送手册。 | 从"通用 MBTI 方法框架"变成"专属于孙承泽的 MBTI 探索者"——先调用已有证据，只追问会改变结论的问题。 |
 | 2026-08-11 | MBTI能力 | 新增四维／八功能证据边界、类型访谈、证据账本、相邻类型对决、报告质量门槛、沟通适配、成长练习和多视角模拟；加入结构化案例审计工具。 | 从"记录一个类型标签"升级为可追问、可反证、可纠正的MBTI分析，同时避免假精确、读心和黄金配对。 |
@@ -235,3 +251,13 @@ scz_MBTI_explorer/
 - 把它发给那个总在深夜替朋友分析 MBTI 的人。
 
 本项目提供人格探索与关系决策支持，不替代心理治疗、医疗诊断、律师意见、警方或紧急服务。
+
+## 许可证
+
+**MIT License**。完整条款见 [LICENSE](LICENSE)，中文说明见 [LICENSE.zh-CN.md](LICENSE.zh-CN.md)。
+
+> 2026-09-06 由 PolyForm Noncommercial 1.0.0 改为 MIT，与上游 `goutoujunshi`（2026-08-17 已改 MIT）对齐。此前那份非商业许可证是从上游改许可证之前的旧快照继承来的，与本 README 一直写着的「上游 …，MIT」对不上。
+
+第三方归属（MIT 要求保留）：狗头军师 goutoujunshi（Copyright (c) 2026 powerycy / shengjidaguai-china）、stop-slop（Copyright (c) 2025 Hardik Pandya）、humanizer（Copyright (c) 2025 Siqi Chen）。逐份位置与已知缺陷见 [`documentation/methods/原始规约/NOTICE.md`](documentation/methods/原始规约/NOTICE.md)。
+
+**一点非法律的提醒**：许可证管的是代码与文本的著作权，管不了内容里那些数字对不对。本仓 MBTI 相关数字按来源分 A–E 五级，D 级（众包类型文学）与 E 级（无来源）请不要当研究结论转引，规则见 [`documentation/数字核验台账-wendang11迁入-2026-09-06.md`](documentation/数字核验台账-wendang11迁入-2026-09-06.md)。

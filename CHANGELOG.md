@@ -2,6 +2,50 @@
 
 本文件记录 MBTI 探索者（原「狗头军师 goutoujunshi」）对用户体验有影响的主要变化。项目尚未发布正式版本号的变更统一记录在“未发布”章节。
 
+## 未发布 — 2026-09-06（wendang11 迁入 + 数字核验 + 许可证对齐）
+
+### 迁入：前身仓 `wendang11` 的 22 份独有内容
+
+`sunccchengze/wendang11`（「恋爱大师 LoveMaster · 恋爱军师 2.0 · MBTI 精通型」，2026-08-04 建、2026-08-12 停更）由主人决定删除。它与本仓同以 `goutoujunshi` 为底座，是同一条思路更早的一次迭代；本仓 `corpus/sources/SOURCES.md` 的 **A1 证据源**（人格判定书）此前就存在那个仓里，删库会断链。
+
+- **`corpus/sources/A1-sunccchengze-人格判定书.md`**：A1 本体入仓，正文一字未改，加溯源横幅。`SOURCES.md` 的 A1 行与 `corpus/profile/05` 同步更正（按「只追加留痕」，原记录保留 + 追加日期说明）。
+- **`references/knowledge/21-MBTI参透手册-2026-08-11.md`**：八功能／16 栈／Shadow／Loop／Grip 恢复表、Step II 20 切面清单、Probability Index、21 条参考来源。与既有 `04-MBTI人格与匹配.md` **互补不重复**（04 是证据纪律，21 是机制与来源）。
+- **`references/knowledge/22-三本宝书蒸馏-Jung-Myers-Keirsey.md`**：Jung《心理类型》／Myers《Gifts Differing》／Keirsey《Please Understand Me II》三家对照读法。
+- **`references/practical/交往注意事项/`**（16 份 + 导读）：「我（INTJ）与 X 型交往注意事项」，为孙承泽一人定制，换人须重推。
+- **`documentation/methods/`**：`恋爱大师10人团队.md`（主人「多视角红队」工作法的方法本体）、`恋爱军师技能总纲.md`、`原始规约/`（turbine `技能库&准则` 的 6 份忠实副本，md5 已逐一核对）+ `NOTICE.md`（版权归属、MIT 许可证全文、已知缺陷）。
+- **`assets/web/intj.html`**：431 行自包含 INTJ 图文页，零外链，字节级原样复制。
+
+**没迁的**：`base/goutoujunshi/`（67 文件，是上游 2026-08-17 改许可证之前的旧快照，LICENSE 还是 PolyForm Noncommercial，本仓 `reference-repos/` 那份是 MIT 新版，更优）；`skills-library` submodule（内容本体在 turbine，775 MB 仓仍在，挂进来会撞 128 MB／1 万文件快照上限）；49 张荣誉证书照片与 12.6 MB docx（不在 main 里，且 `SCZ_Archived` 与 `Yingzai2026` 各有一份）。
+
+### 新增：数字核验台账（本次的主要产出）
+
+**`documentation/数字核验台账-wendang11迁入-2026-09-06.md`**：把迁入内容里的 **27 组数字**逐条定级——**A** 一手文献／官方页面（4 条）、**B** 多站一致的二手转述（4 条）、**C** 口径互相打架（4 条）、**D** 众包投票与类型文学（2 组）、**E** 找不到任何出处（5 组）。数字一个没删，但引用规则写死了：A 可直接用，B／C 须写「转引自 X 站，归属 Y 文献」，D 只能当类型文学口径且同屏给反证，**E 不得进入任何对主人的结论**。
+
+核验中的实质发现：
+
+- **抓到手册一处硬错**：`21-` §5 写「I/E、T/F 相关性较好，S/N、J/P 较弱」，而 McCrae & Costa (1989) 实测是 E/I↔外倾 r≈0.74（最强）、S/N↔开放 r≈0.72（次强）、**T/F↔宜人 r≈0.44（最弱）**、J/P↔尽责 r≈−0.49。最强和最弱说反了。
+- **Probability Index 的定义偏离官方**：官方（themyersbriggs.com）口径是「复测得到同一结果的统计概率」，量的是**稳定性**；手册读成了「你是某偏好的概率」。且它不是 2026 新增，MBTI Global Assessment 约 2023 年已上线；手册写的「16,733 人、20 国」与官方的「23 country/language supplements」不符。
+- **MBTI-BENCH 那条是准的**，并补上了完整引用：Li et al., COLING 2025, pp. 5071–5081, ACL Anthology `2025.coling-main.339`。
+- **补了一条 wendang11 没引的一手文献**：Kim & Lee (2010), *J Korean Acad Nurs* 40(3):336-, doi:10.4040/jkan.2010.40.3.336，n=62 临床夫妻，MBTI 类型相似性与婚姻满意度、正性情感、冲突调节**均无显著差异**。
+- **68%／2.7× 那组依恋数字判 E**：唯一出处是一个 SEO 内容站，它自己转引 Mikulincer & Shaver (2007)，原书里找不到对应表述的公开证据。
+- **原始材料内部两处打架**：INFP 与 INFJ 两份 md 里**一个百分比都没有**（92、85 只在 html 排名表里）；INTJ×INTJ 在 md 是 70/100、在 html 排名表是 83。两处照录不改，在导读里逐份标明哪个数出自哪个文件。
+
+### 🔴 破坏性变更：根许可证 PolyForm Noncommercial → MIT
+
+`LICENSE` 与 `LICENSE.zh-CN.md` 改为 **MIT**，与上游 `goutoujunshi`（2026-08-17 已改 MIT）对齐。此前那份非商业许可证是从上游改许可证**之前**的旧快照继承来的，与 README 一直写着的「上游 …，MIT」自相矛盾。新 `LICENSE` 按 MIT 保留义务写明三方版权归属（powerycy / shengjidaguai-china、Hardik Pandya、Siqi Chen）。**影响**：本仓内容从此可商业使用、修改、分发、再许可。
+
+### 纪律澄清（不改旧条目）
+
+`AGENTS.md` §5 追加 **2026-09-06 主人裁定**：「可以有数字，但不要骗我是事实」。第 2 条「不给功能百分比、匹配率等假精确数字」禁的**不是数字，是无校准／无来源的数字冒充测量值**（`references/knowledge/04` 第 153 行原本就把要禁的东西定义为「精准幻觉：…等**无校准**数字」）。落地办法即上面的 A–E 分级。
+
+`AGENTS.md` §3.4 判例库追加两条：① Agent 替主人归纳的纪律被写成「仓库主人的工作手册」，主人本人对其中若干条没有拍板记录——**归纳必须标注是归纳，不是原话**；② 迁入 16 份交往注意事项时把 html 的化学值当成了 md 的数——**表格每一格都要能指回具体某个文件**。
+
+### 兼容性
+
+- **运行时行为契约未变**：`SKILL.md`（125 行／4916 字符，预算 150／5000）**一字未改**，没有挤占预算，也没有新增必需路由。
+- 迁入的知识与话术通过既有入口可达：`references/practical/00-导读与使用分级.md` 新增一行、`corpus/sources/SOURCES.md` 新增 M5–M9、`AGENTS.md` §9 文件地图新增 7 条。
+- 唯一被改动的迁入文件是 `documentation/methods/原始规约/00-Stop-slop-原始.md`：原文 3 个相对链接（`references/{phrases,structures,examples}.md`）在本仓不存在，改写为上游 `hardikpandya/stop-slop` 的 GitHub 绝对链接（三个路径均已核实存在）。其余 21 份正文一字未改。
+
 ## 未发布 — 2026-09-03（正名）
 
 ### 🔴 破坏性变更：Skill 更名

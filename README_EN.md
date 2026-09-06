@@ -126,16 +126,22 @@ Long-term memory and ChatLab are used only when the user consents or supplies th
 ```text
 scz_MBTI_explorer/
 ├── SKILL.md                    # Core behavior and workflow (MBTI trunk + relationship application)
+├── AGENTS.md                   # Read first, any agent: communication, evidence, Git, corpus rules
 ├── agents/openai.yaml         # Codex display metadata and default prompt
+├── assets/web/intj.html       # Self-contained 431-line INTJ visual essay (no external assets)
 ├── corpus/                    # Sun Chengze's personal corpus (the subject of the exploration)
 │   ├── profile/               # Profile, MBTI evidence ledger, expression DNA, open questions
 │   ├── memory/MEMORY.md       # Living memory: append-only, one entry per session
-│   └── sources/SOURCES.md     # Source ledger: every claim is traceable
+│   ├── handoff/               # Cross-repo handoff (S1 turbine bench)
+│   └── sources/               # Source ledger SOURCES.md + the A1 personality assessment
 ├── reference-repos/           # External MBTI / personality reference repos (read-only)
 ├── references/
 │   ├── knowledge/             # Personality, relationship science, interdisciplinary knowledge
 │   └── practical/             # MBTI interviews, communication, tool integration, memory rules
+│       └── 交往注意事项/       # 16 "me (INTJ) with type X" briefs + reader's guide
 ├── documentation/             # Architecture, workflows, audit report, safety boundaries
+│   ├── methods/               # Method layer: 10-expert team, skill charter, source rules + NOTICE
+│   └── 数字核验台账-…md        # A–E source grading for every number in the migrated material
 └── scripts/
     ├── validate_skill.py      # Project integrity checks
     ├── memory_store.py        # Consent gate, bounded memory, revocation, and deletion
@@ -157,6 +163,7 @@ See [CHANGELOG.md](CHANGELOG.md) for complete release notes and compatibility in
 
 | Date | Type | Update | User value |
 | --- | --- | --- | --- |
+| 2026-09-06 | Migration and verification | Migrated the 22 unique documents of the discontinued predecessor repo `wendang11` (LoveMaster, last commit 2026-08-12) into this repository: the A1 personality assessment, the MBTI mastery handbook, the three-book distillation (Jung / Myers / Keirsey), 16 "me (INTJ) with type X" briefs, the 10-expert team, the skill charter, 6 original rule files from the turbine project, and a 431-line INTJ visual essay. Added a **number verification ledger** grading all 27 numeric claims by source (A primary / B consistent secondary / C conflicting / D crowdsourced typology lore / E no source found), and relicensed the root from PolyForm Noncommercial to MIT to match upstream. | Fixes the dead citation for evidence source A1, so the owner can safely delete `wendang11` (a complete 152-file / 25.05 MB snapshot already exists in `SCZ_Archived`). No number was deleted, but none can now masquerade as a measurement. Verification caught a real error in the handbook (Big Five correlation strengths stated backwards) and a definition of the Probability Index that diverges from the publisher's official wording. |
 | 2026-08-11 | MBTI capability | Added evidence boundaries for preferences and cognitive functions, adaptive typing interviews, evidence ledgers, adjacent-type duels, report quality gates, communication adaptation, growth exercises, multi-perspective simulation, and a structured case-audit tool. | Moves from merely storing a type label to revisable, falsifiable MBTI analysis while preventing fake precision, mind-reading, and “golden pair” claims. |
 | 2026-08-03 | Memory and chat analysis | Preserved the previous profile-building, emotional support, relationship assessment, proactive guidance, and immediate reply capabilities; added compact local memory that updates automatically after first-time consent and can be revoked, plus analysis of chat screenshots, exported records, and existing ChatLab data. | Keeps the familiar adviser experience while enabling bounded profiles across tasks, reliable speaker mapping, and relationship-trend analysis; it neither stores full chats nor claims to export messaging-app data directly. |
 | 2026-07-23 | Architecture | Reduced `SKILL.md` to a lightweight behavior and routing kernel; added mechanisms, risks, and ethical translations for classic social systems including Blueprint-style inner state, natural flow, cold reading, and Mystery-style structured interaction; changed validation to cover required files, context budget, and runtime boundaries; added allowlisted installation and regression scenarios. | Loads only 1–3 references needed for the current question, retaining practical detail while reducing estimated everyday context cost by 48.3%; installed copies can validate without project documentation, and safeguards prevent misuse of mind-reading, manipulation, and stage escalation. |
@@ -176,3 +183,13 @@ If you are not contributing code, you can still:
 - Send it to the friend who always stays up late analyzing everyone else's relationships.
 
 This project provides relationship education and decision support. It is not a substitute for psychotherapy, medical diagnosis, legal advice, law enforcement, or emergency services.
+
+## License
+
+**MIT License**. Full terms in [LICENSE](LICENSE); the repository also ships a Chinese explanation.
+
+> Changed from PolyForm Noncommercial 1.0.0 to MIT on 2026-09-06, to match upstream `goutoujunshi` (relicensed to MIT on 2026-08-17). The noncommercial terms had been inherited from a snapshot taken before that relicensing, which contradicted this README's own note that upstream is MIT.
+
+Third-party attributions retained per MIT: goutoujunshi (Copyright (c) 2026 powerycy / shengjidaguai-china), stop-slop (Copyright (c) 2025 Hardik Pandya), humanizer (Copyright (c) 2025 Siqi Chen). Per-file locations and known defects: [`documentation/methods/原始规约/NOTICE.md`](documentation/methods/原始规约/NOTICE.md).
+
+**One non-legal caveat**: a license governs copyright in code and text, not whether the numbers inside are correct. MBTI-related numbers in this repository are graded A–E by source; do not re-cite grade D (crowdsourced typology lore) or grade E (no source found) as research findings. Rules: [`documentation/数字核验台账-wendang11迁入-2026-09-06.md`](documentation/数字核验台账-wendang11迁入-2026-09-06.md).

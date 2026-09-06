@@ -24,7 +24,7 @@
 
 | ID | 档案 | 提供的证据 |
 | --- | --- | --- |
-| A1 | 人格判定书（收藏于 `wendang11`：`cases/sunccchengze-人格判定书.md`） | INTJ 判定、"情绪化 INTJ"、Fe 诡匠盲区、Se 劣势、低自信答对、过度交付 |
+| A1 | 人格判定书 → **已迁入本仓**：[`A1-sunccchengze-人格判定书.md`](A1-sunccchengze-人格判定书.md)（原载 `sunccchengze/wendang11`：`cases/sunccchengze-人格判定书.md`，**2026-09-06 迁入**，因原仓即将由主人删除） | INTJ 判定、"情绪化 INTJ"、Fe 诡匠盲区、Se 劣势、低自信答对、过度交付。⚠️ 该文「置信度约 88%」是 AI 依自述给的主观置信、**背后无量表**，判为 E 级，见 [`数字核验台账`](../../documentation/数字核验台账-wendang11迁入-2026-09-06.md) §5 |
 | A2 | `0824-2026` HANDOFF | "先理解到根因再修"、要实拍截图证明、中文回复要求 |
 | A3 | 英仔爱心社招新站仓库（`docs/SUN-CHENGZE-PERSONAL-PROFILE.md`、`孙承泽的回复.md`） | 文案审查要求、FAQ 口语化改造、视觉与表达偏好 |
 | A4 | `zixue2026`（238 技能自学操作系统） | 系统性自学战略、科研式学习方法论 |
@@ -40,6 +40,11 @@
 | M2 | `references/practical/MBTI类型访谈与相邻类型辨析.md` | 调查流程、证据账本表头、八功能区分问题库、15 组相邻类型对决 |
 | M3 | `scripts/mbti_case.py` | 结构化案例与报告审计（不打分） |
 | M4 | `documentation/mbti-skill-research.md` | 外部 MBTI skill 调研与"明确不做"清单 |
+| M5 | `references/knowledge/21-MBTI参透手册-2026-08-11.md` | **2026-09-06 自 wendang11 迁入**。八功能／16 栈／Shadow／Loop／Grip 恢复表、Step II 20 切面清单、2026 Probability Index、21 条参考来源。⚠️ 顶部横幅标出 3 处需修正，以 M9 台账为准 |
+| M6 | `references/knowledge/22-三本宝书蒸馏-Jung-Myers-Keirsey.md` | **同上迁入**。Jung《心理类型》／Myers《Gifts Differing》／Keirsey《Please Understand Me II》三家对照读法。二手蒸馏，未核原著 |
+| M7 | `references/practical/交往注意事项/`（16 份 + README） | **同上迁入**。「我（INTJ）与 X 型交往注意事项」，为孙承泽一人定制。化学值是 personality-database 众包口径（D 级），非测量值 |
+| M8 | `documentation/methods/`（10 人团队 + 技能总纲 + 原始规约 6 份） | **同上迁入**。主人「多视角红队」工作法的方法本体；原始规约是 turbine `技能库&准则` 的忠实副本（md5 已核），属历史材料，勿直接当 skill 加载 |
+| M9 | `documentation/数字核验台账-wendang11迁入-2026-09-06.md` | **引用 M5–M8 里任何数字前必读**。把迁入内容的每个数字分成 A（一手）／B（多站一致转述）／C（口径打架）／D（众包类型文学）／E（无来源）五级，并列出我没核到的部分 |
 
 ## 四、外部参考仓库（只作参考，不构成语料）
 
@@ -56,3 +61,5 @@
 | E31 的「能力存量」与「完美主义」两个竞争解释未拆开 | 若属能力问题，该条应降权 | 同上，第二梯队 2/3 问 |
 | 语料仍集中于「学生／自学」单一角色 | 缺进组带团队后的反向检验 | 进组 3–6 个月后重测 E30/E31 |
 | 无正式量表结果（量表名称、时间、答题状态） | 无法与标准化工具交叉校验 | 若他做过，记录量表名与时间；不做也不影响定性分析 |
+| **M5–M8 的数字只做到二手核验**（2026-09-06 新增） | 引用时可能把内容站数字当研究结论 | 见 [`数字核验台账`](../../documentation/数字核验台账-wendang11迁入-2026-09-06.md) §7：Pittenger 1993/2005、McCrae & Costa 1989、Marioles et al. 1996、Mikulincer & Shaver 2007、*MBTI Manual* 第 4 版常模，**原文都没读到**。升到 A 级需要原文 PDF 或付费量表手册 |
+| wendang11 迁入材料的 5 条版权／版本【待确认】 | 对外分发原始规约时有许可风险 | 见 [`methods/原始规约/NOTICE.md`](../../documentation/methods/原始规约/NOTICE.md) §4 |
