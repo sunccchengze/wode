@@ -25,9 +25,11 @@
 | --- | --- | --- |
 | 狗头军师 goutoujunshi（本仓内容与仓库结构的上游） | Copyright (c) 2026 powerycy / shengjidaguai-china · MIT | `reference-repos/goutoujunshi/`；45 份关系知识与话术文档亦源于此 |
 | stop-slop | Copyright (c) 2025 Hardik Pandya · MIT | `documentation/methods/原始规约/00-Stop-slop-原始.md` |
-| humanizer | Copyright (c) 2025 Siqi Chen · MIT | `documentation/methods/原始规约/00-Humanizer-中文版-原始.md`（中文译本，译者授权【待确认】） |
-| turbine 项目自有规约（SKILL运用指南、MULTI_AGENT_ORCHESTRATION） | 孙承泽自有 | `documentation/methods/原始规约/` |
-| 内阁决策、宪法级文件 | 上游作者与许可证【待确认】 | `documentation/methods/原始规约/NOTICE.md` §4 |
+| humanizer（英文原版） | Copyright (c) 2025 Siqi Chen · MIT | `documentation/methods/原始规约/00-Humanizer-中文版-原始.md` 的再上游 |
+| **Humanizer-zh（中文译本，字节级直接来源）** | Copyright (c) 2026 op7418（归藏）· MIT（上游仓自带许可证全文） | `documentation/methods/原始规约/00-Humanizer-中文版-原始.md`（与其 `SKILL.md` 除末尾换行外字节全同：**18897 vs 18898**） |
+| turbine 项目自有规约（SKILL运用指南、MULTI_AGENT_ORCHESTRATION） | 孙承泽自有 | `documentation/methods/原始规约/`；冲突已解决的合并版见 `documentation/methods/SKILL运用指南-合并裁决版.md` |
+| **宪法级文件** | Jiayuan Chang（X `@jiayuan_jy`）· `multica-ai/andrej-karpathy-skills`（原 `forrestchang/…`）。**上游自我声明 MIT，但仓内无 LICENSE 文件**（GitHub license 检测返回 `null`）——按自我声明处理并如实标注证据缺口。素材源自 Andrej Karpathy 的公开帖，**Karpathy 本人未执笔** | `documentation/methods/原始规约/00-宪法级文件-原始.md`（= 上游 `CLAUDE.md` 删掉首行标题） |
+| **内阁决策**（`ai-cabinet-decision-making`） | **上游作者不详，未找到任何许可证**（GitHub 代码搜索三个特征串全部 0 命中，形态指向中文社群转贴）。**保留为历史材料，不对外分发** | `documentation/methods/原始规约/00-内阁决策-原始.md` |
 
 ## 一点非法律的提醒
 

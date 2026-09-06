@@ -7,9 +7,22 @@ Portions of this repository are derived from or include material from
 licensed under the MIT License. See `reference-repos/goutoujunshi/LICENSE`.
 
 Portions under `documentation/methods/原始规约/` are copies of third-party
-MIT-licensed works — Copyright (c) 2025 Hardik Pandya (stop-slop) and
-Copyright (c) 2025 Siqi Chen (humanizer). See
-`documentation/methods/原始规约/NOTICE.md`.
+works:
+
+  - Copyright (c) 2025 Hardik Pandya — "stop-slop", MIT License.
+  - Copyright (c) 2025 Siqi Chen — "humanizer", MIT License.
+  - Copyright (c) 2026 op7418 (归藏) — "Humanizer-zh", the Chinese translation
+    of the above; MIT License (the upstream repository ships the full MIT text).
+  - "andrej-karpathy-skills" by Jiayuan Chang (X: @jiayuan_jy), derived from
+    Andrej Karpathy's public post. The upstream repository declares MIT in its
+    README and in the skill frontmatter but ships NO LICENSE file; it is
+    reproduced here on the strength of that self-declaration, and the evidentiary
+    gap is recorded in NOTICE.md.
+  - "内阁决策" (skill name `ai-cabinet-decision-making`) — upstream author
+    unknown and no license found (public GitHub code search returns zero hits).
+    Retained as historical material only; NOT to be redistributed.
+
+See `documentation/methods/原始规约/NOTICE.md`.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
