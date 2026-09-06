@@ -2,6 +2,48 @@
 
 本文件记录 MBTI 探索者（原「狗头军师 goutoujunshi」）对用户体验有影响的主要变化。项目尚未发布正式版本号的变更统一记录在“未发布”章节。
 
+## 未发布 — 2026-09-06（第二轮：遗留五条结案 + 一手文献复核 + 自纠 4 起）
+
+### 新增：`documentation/遗留五条结案-2026-09-06.md`
+
+主人要求「去网络搜集全维度比较权威的支撑材料，把这五条全部给我一个足以让我满意的答复」。结果：**3 条钉死到一手、1 条给出可执行裁决、1 条部分解决并说清卡在哪**，另查出 4 件不在原清单里但更要紧的事。
+
+- **宪法级文件**：= `multica-ai/andrej-karpathy-skills`（原 `forrestchang/…`，⭐210,488）的 `CLAUDE.md` **删掉首行标题**（2357 − 12 − 1 = 2344，字节数精确对上）。作者 **Jiayuan Chang**（X `@jiayuan_jy`）。**仓内无 LICENSE 文件**（GitHub license 检测返回 `null`），MIT 只是 README 与 SKILL.md frontmatter 的自我声明——按 MIT 处理并如实标注证据缺口。素材源自 Karpathy 2025 年末 X 帖 `status/2015883857489522876`，**Karpathy 本人未执笔**。
+- **Humanizer 中文版**：= `op7418/Humanizer-zh`（归藏，⭐16,743，MIT）的 `SKILL.md`，**除末尾少一个换行外字节全同**（18897 vs 18898）。授权链 `blader/humanizer`（Siqi Chen，MIT）→ `op7418`（MIT，自带 LICENSE 全文）→ 本仓，**译者授权问题解决**。
+- **内阁决策**：GitHub 代码搜索三个特征串**全部 0 命中**，判定为作者不详的中文社群转贴（证据：中文引导语 + frontmatter 被全角方括号包裹 + 英文正文配中文示例）。**但查到更该知道的事**：主人自己在 `Yingzai2026` 的五席内阁纪要（追问／反对／机会／外行人／执行）会议时间 **2026-08-02**，比 turbine 技能库被 wendang11 钉定的 **2026-08-11 早 9 天**——**这份文件不是方法的来源，而是方法的事后表述**。处置：保留为历史材料，不对外分发。
+- **`SKILL运用指南` 冲突**：先更正计数——是 **3 处冲突（9 行标记）**，不是先前写的"9 处"。三处分别为标题前言、§0 声明规范、§1 矩阵（**260 行 vs 86 行**）。实测 turbine `技能库&准则/`：一级条目 **62** 个（含 **11** 个 zip）→ 实体目录 **51** 个；全递归 `SKILL.md` **2712** 个（绝大多数在第三方仓内部）；一级子目录直下的 `SKILL.md` **0** 个。**两侧装载数字都不准**（"33"偏少、"58"偏多、"86+"差 30 倍）。裁决：§1 取 HEAD 侧、标题取传入侧、声明规范取 HEAD 侧、数字全弃用改实测值。**合并版文件未生成**，需主人点头。
+
+### 一手文献复核：4 组数字从 B/C 级升为 A 级
+
+- **Pittenger (2005)** *Consulting Psychology Journal* 57(3):210–221, doi:10.1037/1065-9293.57.3.210 —— **全文已读**。「约 50% 变型」是**误读**：50% 指 5 周内**≥1 个量表**变化（McCarley & Carskadon 1983，Pittenger 只是转引）；**换四字母类型的真数字是 35%（4 周，Myers et al. 1998）**；分维度漂移 EI 32%／SN 25%／TF 29%／JP 30%；每量表 SEM ≥20。
+- **McCrae & Costa (1989)** *Journal of Personality* 57(1):17–40, doi:10.1111/j.1467-6494.1989.tb00759.x（267 男 + 201 女，19–93 岁）—— **原文 PDF 已读**。① **「39–76% 变型」的真身找到了**：原文「**31%–61% 复测（5 周–6 年）得到相同四字母型**」，倒推即 39%–69%，**"76"是二手站把 69 讹成的**。② 相关系数原文口径是「**around .7**」（替代量表实测 EI↔E −.58／−.62、SN↔O .56／.54、TF↔A .46／.32、JP↔C −.29／−.28）；先前引的 `.74/.72/.44/−.49` 是二手渲染，**强弱排序的更正仍成立**（E/I、S/N 强，T/F、J/P 弱），但精确值不再照抄。③ 原文三条**前提级否证**：类型「merely summarize four additive main effects」、「**INTJs differ from ENTJs only in the ways that introverts differ from extraverts**」、功能主导的断言「**not supported by data**」、「**no good evidence that the JP scale has any bearing at all**」、Keirsey 的人口占比估算「**surely an unwarranted reification**」、且「**none of the MBTI indices is related to peer-rated Neuroticism**」。
+- **Marioles, Strickert & Hammer (1996)** *Journal of Psychological Type* **36**:16–27（St. Mary's University，426 对夫妻，7 年）—— **完整引用确认存在**，但**手册把结论讲反了**：原文**支持同型相吸**，并给出女性嫁 INTP 33%／INFP 31%／ISFP 22% 不满意。「预测力可忽略、仅比随机略好」是 `mbtitypeguide.com` 的编辑加工（同站另一处还把样本写成 250 对，自相矛盾）。**两篇一手文献方向相反**（Marioles 同型相吸 vs Kim & Lee 2010 无显著差异），诚实总结是「证据混合、效应小且不一致」。
+- **依恋「68%／2.7×」判死** —— 任何依恋文献里都不存在这两个数。换上 8 条**真实可引**的锚点：Mickelson, Kessler & Shaver (1997) 全国样本 59% 安全型；**Li & Chan (2012) 元分析 73 项研究／21,600+ 被试**（焦虑与回避均与满意度负相关）；Banse (2004) 德国已婚样本 72%；离婚者样本安全型仅 52.5%；Davila & Bradbury；EFT 干预 70–75% 恢复、d=0.93；Waters et al. (2000) 20 年纵向 72% 维持。
+- **INTJ 常模拿到两套官方口径**（手册原书付费，判 B/C）：美国代表性样本 **2.1%**（男 3.3%／女 0.8%，第 3 稀有）vs 最新全球样本 **2.6%**（男 3.0%／女 2.2%，第 4 稀有，**ENTJ 1.8% 最稀有**）。intj.html 的「与 INFJ 并列最稀有」**不成立**（两套数据里 ENTJ 都比 INTJ 稀有），「2–4%」的上限 4% 无依据。
+
+### intj.html 逐行精读完成（抽出 418 行纯文本全读）
+
+新增 **`assets/web/README.md`**：21 条断言分级审计——**9 条站得住 / 2 条与一手文献直接冲突（+1 附带）/ 6 条类型文学 / 4 条无来源**。
+
+- **追到一个源头**：「**Fe 诡匠**」= John Beebe 八维原型的 **Trickster 位**（INTJ 第 7 功能），A1 人格判定书在用它，此前一直没追到出处，现在确认**是正确使用不是生造**。
+- **这页做得好的地方**（不否定）：Beebe 配置正确、「Keirsey ≠ 功能模型」的裁定有价值、「同一四字母内部差异可能大于型间差异」**有 McCrae & Costa 一手支撑**、末尾边界声明合格、自陈来源是"公开书摘"诚实、「低中高阶」自标非官方。
+- **两条前提级冲突**：整页立论「八功能栈才是户型，四字母只是门牌」与「INTJ vs INFJ 机制迥异」，被 McCrae & Costa (1989) 正面否证；功能栈的排序规则（JP+EI 决定主导）原文明说「not supported by data」。
+- **不得当事实引用**：§09「INTJ 关系数据」整块（一个来源名都没给）；§12 图 03 Big Five 剖面（无样本量无量表名，其中**「神经质 45」根本无法从 MBTI 推出**，因 MBTI 不测神经质）；§09 的「426 对…仅比随机略好」。
+- **HTML 一字未改**（历史材料），审计结论写进 README 与台账。
+
+### 自纠 4 起（已全部修好并留痕，见 `AGENTS.md` §3.4）
+
+1. **CRLF 被静默改写**：首轮用 Python 文本模式拷贝 6 份原始规约，CRLF → LF（Humanizer 少 483 字节、内阁决策少 368、宪法级少 63、Stop-slop 少 136），**而当时 NOTICE 里已写下"md5 一致"**。改二进制模式重拷并逐份复核，现 **5 份与源字节完全一致**，Stop-slop 仅含 3 处链接补丁 +156 字节；22 份内容文件"去横幅后逐字节对账"**22/22 通过**。
+2. **误拷一个重复文件**：批量脚本按目录全量遍历，把 `恋爱军师技能总纲.md` 一起拷进了 `原始规约/`，生成一个没有来源横幅的重复文件。已删除（正主在 `documentation/methods/`）。
+3. **我自己的判语错了**：先前断言「官方写 23 country/language supplements，与手册的『20 国』不符」——**23 是 supplements／samples 数，不是国家数**（官方：「23 samples in 19 languages from 20 countries」），手册的「20 国」是对的。**以纠错者姿态说错话比原文写错更容易骗人**，已在台账与手册横幅公开更正。
+4. **计数单位说错**：「9 处冲突标记」实为 **3 处冲突 × 3 行标记**。
+
+### 同步更新
+
+`documentation/methods/原始规约/NOTICE.md`（归属表全部改为一手已核版 + 新增 §5 冲突裁决）、`documentation/数字核验台账-…-2026-09-06.md`（新增 §1.5–§1.7、§8，改写 §7 诚实清单，更正 §1.2③）、`references/knowledge/21-MBTI参透手册-2026-08-11.md`（横幅从 3 处修正扩到 **6 处** + 依恋数字判死提示）、`references/practical/00-导读与使用分级.md`（新增 intj.html 入口与 McCrae 前提提醒）、`AGENTS.md` §3.4（追加 4 条判例）。
+
+---
+
 ## 未发布 — 2026-09-06（wendang11 迁入 + 数字核验 + 许可证对齐）
 
 ### 迁入：前身仓 `wendang11` 的 22 份独有内容
@@ -12,7 +54,7 @@
 - **`references/knowledge/21-MBTI参透手册-2026-08-11.md`**：八功能／16 栈／Shadow／Loop／Grip 恢复表、Step II 20 切面清单、Probability Index、21 条参考来源。与既有 `04-MBTI人格与匹配.md` **互补不重复**（04 是证据纪律，21 是机制与来源）。
 - **`references/knowledge/22-三本宝书蒸馏-Jung-Myers-Keirsey.md`**：Jung《心理类型》／Myers《Gifts Differing》／Keirsey《Please Understand Me II》三家对照读法。
 - **`references/practical/交往注意事项/`**（16 份 + 导读）：「我（INTJ）与 X 型交往注意事项」，为孙承泽一人定制，换人须重推。
-- **`documentation/methods/`**：`恋爱大师10人团队.md`（主人「多视角红队」工作法的方法本体）、`恋爱军师技能总纲.md`、`原始规约/`（turbine `技能库&准则` 的 6 份忠实副本，md5 已逐一核对）+ `NOTICE.md`（版权归属、MIT 许可证全文、已知缺陷）。
+- **`documentation/methods/`**：`恋爱大师10人团队.md`（主人「多视角红队」工作法的方法本体）、`恋爱军师技能总纲.md`、`原始规约/`（turbine `技能库&准则` 的 6 份忠实副本，md5 已逐一核对）〔**2026-09-06 追加更正**：写下这句时该核对**并不成立**——首轮拷贝把 CRLF 静默转成了 LF；已改二进制模式重拷并复核，现 5 份与源字节全同、Stop-slop 仅含链接补丁 +156 字节。按「只追加留痕」原则保留原句，详见本节上方"自纠 4 起"〕+ `NOTICE.md`（版权归属、MIT 许可证全文、已知缺陷）。
 - **`assets/web/intj.html`**：431 行自包含 INTJ 图文页，零外链，字节级原样复制。
 
 **没迁的**：`base/goutoujunshi/`（67 文件，是上游 2026-08-17 改许可证之前的旧快照，LICENSE 还是 PolyForm Noncommercial，本仓 `reference-repos/` 那份是 MIT 新版，更优）；`skills-library` submodule（内容本体在 turbine，775 MB 仓仍在，挂进来会撞 128 MB／1 万文件快照上限）；49 张荣誉证书照片与 12.6 MB docx（不在 main 里，且 `SCZ_Archived` 与 `Yingzai2026` 各有一份）。
