@@ -1,0 +1,296 @@
+{
+ "tool": "tools/harvest.py",
+ "generated_at": "2026-09-14T15:40:52Z",
+ "as_of": "2026-09-14",
+ "source_repo": "sunccchengze/zixue2026",
+ "source_head": "53313fba50a3",
+ "totals": {
+  "disciplines": 9,
+  "topic_files": 45,
+  "cards": 298,
+  "cards_due": 296,
+  "cards_overdue": 296,
+  "masters": 28,
+  "roadmap_units": 40,
+  "preferences": 36,
+  "case_law": 63,
+  "recon_mismatch": 3
+ },
+ "parse_warnings": [
+  "probability/memory/drill-ledger/topics/topic08-矩生成特征函数.md:17 行内有未转义的裸竖线，已按「S/D/日期」锚点重切列（S 在第 6 列）",
+  "复变函数与积分变换/memory/drill-ledger/topics/topic01-复数与复平面.md:10 行内有未转义的裸竖线，已按「S/D/日期」锚点重切列（S 在第 2 列）",
+  "大学化学/memory/drill-ledger/topics/topic00-真题预备诊断.md:55 行内有未转义的裸竖线，已按「S/D/日期」锚点重切列（S 在第 4 列）",
+  "大学化学/memory/drill-ledger/topics/topic00-真题预备诊断.md:89 行内有未转义的裸竖线，已按「S/D/日期」锚点重切列（S 在第 6 列）",
+  "大学化学/memory/drill-ledger/topics/topic11-晶体与非晶体.md: 空账本（表头在、0 张卡）",
+  "大学化学/memory/drill-ledger/topics/topic12-化学反应速率.md: 空账本（表头在、0 张卡）",
+  "大学化学/memory/drill-ledger/topics/topic13-表面现象与胶体.md: 空账本（表头在、0 张卡）",
+  "大学化学/memory/drill-ledger/topics/topic14-化学实验与数据质量.md: 空账本（表头在、0 张卡）",
+  "大学化学/memory/drill-ledger/topics/topic15-真题综合与迁移.md: 空账本（表头在、0 张卡）",
+  "大学物理/memory/drill-ledger/topics/topic01-简谐振动.md: 空账本（表头在、0 张卡）",
+  "数理方程/memory/drill-ledger/topics/topic01-定解问题.md: 空账本（表头在、0 张卡）",
+  "数理方程/memory/drill-ledger/topics/topic02-弦振动.md: 空账本（表头在、0 张卡）",
+  "数理方程/memory/drill-ledger/topics/topic03-热传导.md: 空账本（表头在、0 张卡）",
+  "数理方程/memory/drill-ledger/topics/topic04-拉普拉斯.md: 空账本（表头在、0 张卡）",
+  "数理方程/memory/drill-ledger/topics/topic05-非齐次边界.md: 空账本（表头在、0 张卡）",
+  "数理方程/memory/drill-ledger/topics/topic06-固有函数展开.md: 空账本（表头在、0 张卡）",
+  "数理方程/memory/drill-ledger/topics/topic07-行波法.md: 空账本（表头在、0 张卡）",
+  "数理方程/memory/drill-ledger/topics/topic08-积分变换.md: 空账本（表头在、0 张卡）",
+  "数理方程/memory/drill-ledger/topics/topic09-格林函数.md: 空账本（表头在、0 张卡）",
+  "数理方程/memory/drill-ledger/topics/topic10-特殊函数.md: 空账本（表头在、0 张卡）",
+  "数理方程/memory/drill-ledger/topics/topic11-能量法.md: 空账本（表头在、0 张卡）",
+  "数理方程/memory/drill-ledger/topics/topic12-真题综合.md: 空账本（表头在、0 张卡）"
+ ],
+ "recon_mismatches": [
+  {
+   "discipline": "probability",
+   "topic": "课题05-随机变量函数",
+   "index_claims": 6,
+   "detail_found": 7,
+   "match": false,
+   "src": "probability/memory/drill-ledger/index.md"
+  },
+  {
+   "discipline": "probability",
+   "topic": "课题06-期望",
+   "index_claims": 5,
+   "detail_found": 4,
+   "match": false,
+   "src": "probability/memory/drill-ledger/index.md"
+  },
+  {
+   "discipline": "复变函数与积分变换",
+   "topic": "课题01-复数与复平面",
+   "index_claims": 4,
+   "detail_found": 6,
+   "match": false,
+   "src": "复变函数与积分变换/memory/drill-ledger/index.md"
+  }
+ ],
+ "topic_files": [
+  {
+   "src": "probability/memory/drill-ledger/topics/topic01-概率是什么.md",
+   "cards": 12,
+   "sha1": "d8ce9742e96a"
+  },
+  {
+   "src": "probability/memory/drill-ledger/topics/topic02-条件概率.md",
+   "cards": 8,
+   "sha1": "54ef07e934b4"
+  },
+  {
+   "src": "probability/memory/drill-ledger/topics/topic03-随机变量.md",
+   "cards": 7,
+   "sha1": "daf39fdc369a"
+  },
+  {
+   "src": "probability/memory/drill-ledger/topics/topic04-常见分布.md",
+   "cards": 8,
+   "sha1": "2637cedafaba"
+  },
+  {
+   "src": "probability/memory/drill-ledger/topics/topic05-随机变量函数.md",
+   "cards": 6,
+   "sha1": "8f7f39c1d45e"
+  },
+  {
+   "src": "probability/memory/drill-ledger/topics/topic06-期望.md",
+   "cards": 4,
+   "sha1": "56941637c518"
+  },
+  {
+   "src": "probability/memory/drill-ledger/topics/topic07-方差协方差.md",
+   "cards": 5,
+   "sha1": "b28f428e809d"
+  },
+  {
+   "src": "probability/memory/drill-ledger/topics/topic08-矩生成特征函数.md",
+   "cards": 4,
+   "sha1": "88bcc52b73e1"
+  },
+  {
+   "src": "东方智慧/memory/drill-ledger/topics/topic01-知行合一.md",
+   "cards": 1,
+   "sha1": "7ef31b58d174"
+  },
+  {
+   "src": "东方智慧/memory/drill-ledger/topics/topic02-无为.md",
+   "cards": 1,
+   "sha1": "c05594cfbac4"
+  },
+  {
+   "src": "东方智慧/memory/drill-ledger/topics/topic03-本来无一物.md",
+   "cards": 1,
+   "sha1": "a30e2c036647"
+  },
+  {
+   "src": "东方智慧/memory/drill-ledger/topics/topic04-侘寂.md",
+   "cards": 1,
+   "sha1": "5079300394a4"
+  },
+  {
+   "src": "复变函数与积分变换/memory/drill-ledger/topics/topic01-复数与复平面.md",
+   "cards": 6,
+   "sha1": "5329a4cbf7bc"
+  },
+  {
+   "src": "大学化学/memory/drill-ledger/topics/topic00-真题预备诊断.md",
+   "cards": 94,
+   "sha1": "a8beae1c7d51"
+  },
+  {
+   "src": "大学化学/memory/drill-ledger/topics/topic01-守恒反应热与焓.md",
+   "cards": 13,
+   "sha1": "fcd155c4b282"
+  },
+  {
+   "src": "大学化学/memory/drill-ledger/topics/topic02-熵吉布斯与自发性.md",
+   "cards": 5,
+   "sha1": "b4e4428ccfaf"
+  },
+  {
+   "src": "大学化学/memory/drill-ledger/topics/topic03-化学平衡.md",
+   "cards": 12,
+   "sha1": "e2604eec9a23"
+  },
+  {
+   "src": "大学化学/memory/drill-ledger/topics/topic04-酸碱与缓冲.md",
+   "cards": 12,
+   "sha1": "1c2cff9da760"
+  },
+  {
+   "src": "大学化学/memory/drill-ledger/topics/topic05-沉淀与配位平衡.md",
+   "cards": 14,
+   "sha1": "e94bca83f5c9"
+  },
+  {
+   "src": "大学化学/memory/drill-ledger/topics/topic06-氧化还原与电化学.md",
+   "cards": 14,
+   "sha1": "ee771f4c8fc2"
+  },
+  {
+   "src": "大学化学/memory/drill-ledger/topics/topic07-原子结构与周期律.md",
+   "cards": 10,
+   "sha1": "92e042418801"
+  },
+  {
+   "src": "大学化学/memory/drill-ledger/topics/topic08-化学键与分子构型.md",
+   "cards": 16,
+   "sha1": "88c45d2591e1"
+  },
+  {
+   "src": "大学化学/memory/drill-ledger/topics/topic09-配位化合物.md",
+   "cards": 16,
+   "sha1": "ba43505bab27"
+  },
+  {
+   "src": "大学化学/memory/drill-ledger/topics/topic10-分子间力气液体与溶液.md",
+   "cards": 12,
+   "sha1": "11791b8c6403"
+  },
+  {
+   "src": "大学化学/memory/drill-ledger/topics/topic11-晶体与非晶体.md",
+   "cards": 0,
+   "sha1": "787f6e0988ca"
+  },
+  {
+   "src": "大学化学/memory/drill-ledger/topics/topic12-化学反应速率.md",
+   "cards": 0,
+   "sha1": "f8b0b18b966f"
+  },
+  {
+   "src": "大学化学/memory/drill-ledger/topics/topic13-表面现象与胶体.md",
+   "cards": 0,
+   "sha1": "7af219f36fbb"
+  },
+  {
+   "src": "大学化学/memory/drill-ledger/topics/topic14-化学实验与数据质量.md",
+   "cards": 0,
+   "sha1": "2b9584ac5d34"
+  },
+  {
+   "src": "大学化学/memory/drill-ledger/topics/topic15-真题综合与迁移.md",
+   "cards": 0,
+   "sha1": "baa4e771c81d"
+  },
+  {
+   "src": "大学物理/memory/drill-ledger/topics/topic01-简谐振动.md",
+   "cards": 0,
+   "sha1": "925b2a5a5034"
+  },
+  {
+   "src": "工程力学/memory/drill-ledger/topics/topic01-静力学公理与受力分析.md",
+   "cards": 5,
+   "sha1": "45d56412f300"
+  },
+  {
+   "src": "工程力学/memory/drill-ledger/topics/topic02-平面汇交力系与力偶系.md",
+   "cards": 6,
+   "sha1": "213b55b8d956"
+  },
+  {
+   "src": "工程力学/memory/drill-ledger/topics/topic03-平面任意力系的简化与平衡.md",
+   "cards": 5,
+   "sha1": "efeaef08ec65"
+  },
+  {
+   "src": "数理方程/memory/drill-ledger/topics/topic01-定解问题.md",
+   "cards": 0,
+   "sha1": "3d7028d68665"
+  },
+  {
+   "src": "数理方程/memory/drill-ledger/topics/topic02-弦振动.md",
+   "cards": 0,
+   "sha1": "e129dd4b43d1"
+  },
+  {
+   "src": "数理方程/memory/drill-ledger/topics/topic03-热传导.md",
+   "cards": 0,
+   "sha1": "5c974e2ebe1a"
+  },
+  {
+   "src": "数理方程/memory/drill-ledger/topics/topic04-拉普拉斯.md",
+   "cards": 0,
+   "sha1": "a3eb5bdafc3b"
+  },
+  {
+   "src": "数理方程/memory/drill-ledger/topics/topic05-非齐次边界.md",
+   "cards": 0,
+   "sha1": "392ba6449d96"
+  },
+  {
+   "src": "数理方程/memory/drill-ledger/topics/topic06-固有函数展开.md",
+   "cards": 0,
+   "sha1": "85dba445c953"
+  },
+  {
+   "src": "数理方程/memory/drill-ledger/topics/topic07-行波法.md",
+   "cards": 0,
+   "sha1": "f72d3fa81bc1"
+  },
+  {
+   "src": "数理方程/memory/drill-ledger/topics/topic08-积分变换.md",
+   "cards": 0,
+   "sha1": "de7335d58c95"
+  },
+  {
+   "src": "数理方程/memory/drill-ledger/topics/topic09-格林函数.md",
+   "cards": 0,
+   "sha1": "3afa59b2dabe"
+  },
+  {
+   "src": "数理方程/memory/drill-ledger/topics/topic10-特殊函数.md",
+   "cards": 0,
+   "sha1": "d76a7d84bab2"
+  },
+  {
+   "src": "数理方程/memory/drill-ledger/topics/topic11-能量法.md",
+   "cards": 0,
+   "sha1": "9b8bc917fd6f"
+  },
+  {
+   "src": "数理方程/memory/drill-ledger/topics/topic12-真题综合.md",
+   "cards": 0,
+   "sha1": "9a14e869b43d"
+  }
+ ]
+}
